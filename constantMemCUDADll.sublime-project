@@ -1,0 +1,39 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"build_systems": [
+		{
+			"name": "ConstantMemCUDADll - Build",
+			"target": "terminus_exec",
+			"focus": true,
+			"timeit": false,
+			"file_regex": "^(..[^:]*):([0-9]+):?([0-9]+)?:? (.*)$",
+			"cancel": "terminus_cancel_build",
+			"shell_cmd": "cmake --build build",
+			"working_dir": "${project_path:${folder}}",
+		},
+		{
+			"name": "ConstantMemCUDADll - CMake",
+			"target": "terminus_exec",
+			"focus": true,
+			"timeit": false,
+			"file_regex": "^(..[^:]*):([0-9]+):?([0-9]+)?:? (.*)$",
+			"cancel": "terminus_cancel_build",
+			"working_dir": "${project_path:${folder}}",
+			"shell_cmd": "cmake -B build -DCMAKE_EXPORT_COMPILE_COMMANDS=ON",
+			"variants": [
+				{
+					"name": "Debug",
+					"shell_cmd": "cmake -B build -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=ON",
+				},
+				{
+					"name": "Release",
+					"shell_cmd": "cmake -B build -DCMAKE_BUILD_TYPE=Release -DCMAKE_EXPORT_COMPILE_COMMANDS=ON",
+				}
+			]
+		},
+	]
+}
